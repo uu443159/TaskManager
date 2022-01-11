@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TaskManager.iml" filepath="$PROJECT_DIR$/.idea/TaskManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bl/bl.iml" filepath="$PROJECT_DIR$/bl/bl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dao + service layer/dao + service layer.iml" filepath="$PROJECT_DIR$/dao + service layer/dao + service layer.iml" />
     </modules>
   </component>
 </project>
