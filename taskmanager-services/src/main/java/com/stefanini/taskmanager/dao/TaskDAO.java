@@ -7,17 +7,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class TaskDAO extends BaseDAO<Task>{
 
     DatabaseConnection dbConnection = DatabaseConnection.getInstance();
     Connection connection = dbConnection.openConnection();
 
+    public TaskDAO() throws SQLException {
+    }
+
     @Override
-    protected PreparedStatement getAllStatement(Task task) throws SQLException {
+    protected PreparedStatement getAllStatement() throws SQLException {
+        return connection.prepareStatement("SELECT * FROM user;");
+    }
+
+    @Override
+    public PreparedStatement getByNameStatement(String name) throws SQLException {
         PreparedStatement getByNameStatement = connection.prepareStatement("SELECT * FROM task WHERE username = ?;");
 
-        getByNameStatement.setString(1, task.getUserName());
+        getByNameStatement.setString(1, name);
 
         return getByNameStatement;
     }
@@ -42,8 +51,5 @@ public class TaskDAO extends BaseDAO<Task>{
         task.setDescription(resultSet.getString("description"));
 
         return task;
-    }
-
-    public TaskDAO() throws SQLException {
     }
 }

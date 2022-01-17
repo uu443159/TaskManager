@@ -1,18 +1,32 @@
 package com.stefanini.taskmanager.dao;
 
+import com.stefanini.taskmanager.entity.Task;
 import com.stefanini.taskmanager.entity.User;
 import com.stefanini.taskmanager.utils.DatabaseConnection;
 
 import java.sql.*;
+import java.util.List;
 
 public class UserDAO extends BaseDAO<User> {
 
     DatabaseConnection db_connection = DatabaseConnection.getInstance();
     Connection connection = db_connection.openConnection();
 
+    public UserDAO() throws SQLException {
+    }
+
     @Override
-    protected PreparedStatement getAllStatement(User user) throws SQLException {
+    protected PreparedStatement getAllStatement() throws SQLException {
         return connection.prepareStatement("SELECT * FROM user;");
+    }
+
+    @Override
+    public PreparedStatement getByNameStatement (String name) throws SQLException {
+        PreparedStatement getByNameStatement = connection.prepareStatement("SELECT * FROM user WHERE username = ?;");
+
+        getByNameStatement.setString(1, name);
+
+        return getByNameStatement;
     }
 
     @Override
@@ -37,6 +51,4 @@ public class UserDAO extends BaseDAO<User> {
         return user;
     }
 
-    public UserDAO() throws SQLException {
-    }
 }

@@ -45,11 +45,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void showUsersTask(String userName) throws ServiceException {
-        Task task = new Task();
         List<Task> taskList;
 
         try {
-            taskList = taskDAO.getAll(task);
+            taskList = taskDAO.getByName(userName);
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
             throw new ServiceException(e.getMessage(),e);

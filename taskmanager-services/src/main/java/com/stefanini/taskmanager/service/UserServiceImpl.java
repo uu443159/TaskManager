@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
         List<User> userList;
 
         try {
-            userList = userDAO.getAll(user);
+            userList = userDAO.getAll();
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
             throw new ServiceException(e.getMessage(),e);

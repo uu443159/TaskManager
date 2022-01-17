@@ -7,10 +7,11 @@ public interface AbstractDAO<T> {
 
     /**
      * Return all the entries from database table
-     * @param entity Name of database table model
      * @return The list of elements
      */
-    List<T> getAll(T entity) throws SQLException;
+    List<T> getAll() throws SQLException;
+
+    List<T> getByName(String name) throws SQLException;
 
     /**
      * Add a new entry to the database table
