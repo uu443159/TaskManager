@@ -5,6 +5,7 @@ import com.stefanini.taskmanager.exception.ServiceException;
 
 public class Main {
     public static void main(String[] args) {
+
         AbstractCommandFactory commandFactory = CommandFactory.getInstance();
 
 /*
