@@ -17,10 +17,8 @@ public class TaskDAO extends BaseDAO<Task>{
     protected PreparedStatement getAllStatement(Task task) throws SQLException {
         PreparedStatement getByNameStatement = connection.prepareStatement("SELECT * FROM task WHERE username = ?;");
 
-        String test = task.getUserName();
         getByNameStatement.setString(1, task.getUserName());
 
-        //PreparedStatement test = getByNameStatement;
         return getByNameStatement;
     }
 
