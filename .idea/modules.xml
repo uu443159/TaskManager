@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TaskManager.iml" filepath="$PROJECT_DIR$/.idea/TaskManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bl/bl.iml" filepath="$PROJECT_DIR$/bl/bl.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dao + service layer/dao + service layer.iml" filepath="$PROJECT_DIR$/dao + service layer/dao + service layer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taskmanager-launcher/taskmanager-launcher.iml" filepath="$PROJECT_DIR$/taskmanager-launcher/taskmanager-launcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taskmanager-services/taskmanager-services.iml" filepath="$PROJECT_DIR$/taskmanager-services/taskmanager-services.iml" />
     </modules>
   </component>
 </project>

@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dao + service layer" />
-        <module name="bl" />
+        <module name="taskmanager-launcher" />
+        <module name="taskmanager-services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bl" target="8" />
-      <module name="dao + service layer" target="8" />
       <module name="TaskManager" target="8" />
+      <module name="taskmanager-launcher" target="8" />
+      <module name="taskmanager-services" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
