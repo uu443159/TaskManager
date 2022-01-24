@@ -1,40 +1,33 @@
 package com.stefanini.taskmanager.entity;
 
+import lombok.*;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "user", schema = "taskManager")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
+
     private String firstName;
     private String lastName;
+
+    @NaturalId
     private String userName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @OneToMany(mappedBy = "userName")
+    private List<Task> taskList = new ArrayList<>();
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                '}';
-    }
 }

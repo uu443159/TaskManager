@@ -20,11 +20,11 @@ public class Main {
         args[3] = "-un='user4'";
 */
 
-/*
+
         args = new String[2];
         args[0] = "-showTasks";
         args[1] = "-un='user1'";
-*/
+
 /*
         args = new String[4];
         args[0] = "-addTask";

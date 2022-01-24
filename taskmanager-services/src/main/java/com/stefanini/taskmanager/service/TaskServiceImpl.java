@@ -3,13 +3,11 @@ package com.stefanini.taskmanager.service;
 import com.stefanini.taskmanager.dao.AbstractDAO;
 import com.stefanini.taskmanager.dao.MySQLDAOFactory;
 import com.stefanini.taskmanager.entity.Task;
-import com.stefanini.taskmanager.entity.User;
 import com.stefanini.taskmanager.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskServiceImpl implements TaskService {
@@ -27,6 +25,7 @@ public class TaskServiceImpl implements TaskService {
 
     private static final Logger logger = LogManager.getLogger (TaskServiceImpl.class);
 
+    @sendemail
     @Override
     public void addTask(String userName, String title, String description) throws ServiceException {
         Task task = new Task();

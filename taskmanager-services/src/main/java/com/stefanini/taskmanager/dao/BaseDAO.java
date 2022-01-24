@@ -1,64 +1,61 @@
 package com.stefanini.taskmanager.dao;
 
+import com.stefanini.taskmanager.utils.HibernateSessionFactoryUtil;
+import com.stefanini.taskmanager.utils.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseDAO<T> implements AbstractDAO<T> {
 
+    private SessionFactory sessionFactory = HibernateSessionFactoryUtil.getSessionFactory();
+
+    private SessionUtils sessionUtil = new SessionUtils();
+
     private static final Logger logger = LogManager.getLogger(BaseDAO.class);
 
     @Override
-    public List<T> getAll() throws SQLException {
+    public List<T> getAll()  {
+        Session session = sessionUtil.openSession();
 
-        List<T> entityList = new ArrayList<>();
+        Query query = getAllQuery(session);
 
-        ResultSet resultSet = getAllStatement().executeQuery();
+        List<T> entityList = query.list();
 
-        while (resultSet.next()) {
-            T entity = populateEntity(resultSet);
-            entityList.add(entity);
-        }
+        sessionUtil.closeSession(session);
 
         return entityList;
     }
 
     @Override
-    public List<T> getByName(String name) throws SQLException {
+    public List<T> getByName(String name) {
+        Session session = sessionUtil.openSession();
 
-        List<T> entityList = new ArrayList<>();
+        Query query = getByNameQuery(name, session);
 
-        ResultSet resultSet = getByNameStatement(name).executeQuery();
+        List<T> entityList = query.list();
 
-        while (resultSet.next()) {
-            T entity = populateEntity(resultSet);
-            entityList.add(entity);
-        }
+        sessionUtil.closeSession(session);
 
         return entityList;
     }
 
     @Override
-    public int insert(T entity) throws SQLException{
-        int rowCount = getInsertStatement(entity).executeUpdate();
-        if(rowCount == 1) {
-            logger.info("The new entry has been added to the database");
-        }
-        return rowCount;
+    public void insert(T entity) {
+        Session session = sessionUtil.openTransactionSession();
+
+        session.save(entity);
+
+        sessionUtil.closeTransactionSession(session);
+
     }
 
-    protected abstract PreparedStatement getAllStatement() throws SQLException;
+    protected abstract Query getAllQuery(Session session);
 
-    protected abstract PreparedStatement getByNameStatement(String name) throws SQLException;
-
-    protected abstract PreparedStatement getInsertStatement(T entity) throws SQLException;
-
-    protected abstract T populateEntity(ResultSet resultSet) throws SQLException;
+    protected abstract Query getByNameQuery(String name, Session session);
 
 }
