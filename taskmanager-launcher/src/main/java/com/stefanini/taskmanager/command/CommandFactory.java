@@ -5,6 +5,8 @@ import com.stefanini.taskmanager.service.TaskServiceImpl;
 import com.stefanini.taskmanager.service.UserService;
 import com.stefanini.taskmanager.service.UserServiceImpl;
 
+import java.sql.SQLException;
+
 public class CommandFactory implements AbstractCommandFactory{
 
     private static CommandFactory instance;
@@ -12,12 +14,12 @@ public class CommandFactory implements AbstractCommandFactory{
     private UserService userService;
     private TaskService taskService;
 
-    private CommandFactory() {
+    private CommandFactory() throws SQLException {
         userService = new UserServiceImpl();
         taskService = new TaskServiceImpl();
     }
 
-    public static CommandFactory getInstance() {
+    public static CommandFactory getInstance() throws SQLException {
         if(instance == null) {
             instance = new CommandFactory();
         }
@@ -40,6 +42,9 @@ public class CommandFactory implements AbstractCommandFactory{
                 break;
             case "-showTasks":
                 command = new ShowUsersTask(args, taskService);
+                break;
+            case "-createUserAndAddTask":
+                command = new CreateUserAndAddTask(args, userService);
                 break;
             default:
                 throw new IllegalArgumentException("Incorrect command");

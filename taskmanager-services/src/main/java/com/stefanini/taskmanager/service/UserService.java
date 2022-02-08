@@ -15,4 +15,6 @@ public interface UserService {
      * Shows the list of users from 'user' database table
      */
     void showAllUsers() throws ServiceException;
+
+    void createUserAndAddTask (String firstName, String lastName, String userName, String title, String description) throws ServiceException;
 }

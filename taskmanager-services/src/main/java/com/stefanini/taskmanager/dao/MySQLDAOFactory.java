@@ -1,7 +1,7 @@
 package com.stefanini.taskmanager.dao;
 
-import com.stefanini.taskmanager.entity.Task;
-import com.stefanini.taskmanager.entity.User;
+import com.stefanini.taskmanager.dao.impl.TaskDAOImpl;
+import com.stefanini.taskmanager.dao.impl.UserDAOImpl;
 
 import java.sql.SQLException;
 
@@ -23,13 +23,13 @@ public class MySQLDAOFactory implements AbstractDAOFactory {
     }
 
     @Override
-    public AbstractDAO<User> getUserDAO() throws SQLException {
-        return new UserDAO();
+    public UserDAO getUserDAO() throws SQLException {
+        return new UserDAOImpl();
     }
 
     @Override
-    public AbstractDAO<Task> getTaskDAO() throws SQLException {
-        return new TaskDAO();
+    public TaskDAO getTaskDAO() throws SQLException {
+        return new TaskDAOImpl();
     }
 
 }
