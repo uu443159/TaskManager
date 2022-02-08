@@ -18,5 +18,7 @@ public interface AbstractDAO<T> {
      * @param entity Name of database table model
      * @return Number of rows have been added
      */
-    int insert(T entity) throws SQLException;
+    void insert(T entity) throws SQLException;
+
+    void createAndAdd(T entity) throws SQLException;
 }

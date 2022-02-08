@@ -1,22 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+        <File name="File" fileName="logs/output.log">
+            <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </appenders>
 
-    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="maxFileSize" value="250MB" />
-        <param name="maxBackupIndex" value="5" />
-        <param name="file" value="/Users/user/\!/Stefanini_Internship/logs/logfile.log" />
-        <param name="Append" value="true" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern"
-                   value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
-        </layout>
-    </appender>
-
-    <root>
-        <level value="ERROR"/>
-        <appender-ref ref="fileAppender"/>
-    </root>
-
-</log4j:configuration>
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="Console" level="info"/>
+            <appender-ref ref="File" level="debug"/>
+        </root>
+    </loggers>
+</configuration>
