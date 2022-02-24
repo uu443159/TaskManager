@@ -4,30 +4,34 @@ import com.stefanini.taskmanager.service.TaskService;
 import com.stefanini.taskmanager.service.TaskServiceImpl;
 import com.stefanini.taskmanager.service.UserService;
 import com.stefanini.taskmanager.service.UserServiceImpl;
+import com.stefanini.taskmanager.threadpool.MyThreadPoolExecutor;
 
 import java.sql.SQLException;
 
-public class CommandFactory implements AbstractCommandFactory{
+public class CommandFactory implements AbstractCommandFactory {
 
     private static CommandFactory instance;
 
     private UserService userService;
     private TaskService taskService;
 
+    private MyThreadPoolExecutor threadPoolExecutor;
+
     private CommandFactory() throws SQLException {
         userService = new UserServiceImpl();
         taskService = new TaskServiceImpl();
+        threadPoolExecutor = new MyThreadPoolExecutor(userService, taskService);
     }
 
     public static CommandFactory getInstance() throws SQLException {
-        if(instance == null) {
+        if (instance == null) {
             instance = new CommandFactory();
         }
         return instance;
     }
 
     @Override
-    public AbstractCommand getCommand (String[] args) {
+    public AbstractCommand getCommand(String[] args) {
         AbstractCommand command;
 
         switch (args[0]) {
@@ -46,10 +50,14 @@ public class CommandFactory implements AbstractCommandFactory{
             case "-createUserAndAddTask":
                 command = new CreateUserAndAddTask(args, userService);
                 break;
+            case "-insertData":
+                command = new ThreadExecutorCommand(args, threadPoolExecutor);
+                break;
             default:
                 throw new IllegalArgumentException("Incorrect command");
         }
 
         return command;
     }
+
 }

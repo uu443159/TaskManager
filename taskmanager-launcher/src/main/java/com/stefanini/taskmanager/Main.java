@@ -13,8 +13,8 @@ public class Main {
         AbstractCommandFactory commandFactory = CommandFactory.getInstance();
 
 
-        args = new String[1];
-        args[0] = "-showAllUsers";
+//        args = new String[1];
+//        args[0] = "-showAllUsers";
 
 
 //        args = new String[4];
@@ -23,13 +23,9 @@ public class Main {
 //        args[2] = "-ln='Max'";
 //        args[3] = "-un='maxik'";
 
-
-
 //        args = new String[2];
 //        args[0] = "-showTasks";
-//        args[1] = "-un='sidorov2'";
-
-
+//        args[1] = "-un='ivan'";
 
 //
 //        args = new String[4];
@@ -47,6 +43,8 @@ public class Main {
 //        args[4] = "-tt='Task1'";
 //        args[5] = "-td='do smth 1'";
 
+        args = new String[1];
+        args[0] = "-insertData";
 
         AbstractCommand command = commandFactory.getCommand(args);
         try {

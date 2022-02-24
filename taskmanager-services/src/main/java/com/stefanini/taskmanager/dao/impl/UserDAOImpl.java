@@ -23,4 +23,14 @@ public class UserDAOImpl extends GenericDAOImpl<User> implements UserDAO {
     protected Class<User> getEntityClass() {
         return User.class;
     }
+
+    @Override
+    protected User getEntityById(List<User> userList, long id) {
+
+        return userList.stream()
+                .filter(person -> person.getId() == id)
+                .findAny()
+                .orElse(null);
+
+    }
 }
