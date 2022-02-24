@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 public class CreateUserAndAddTask extends BaseCommand {
     private final UserService userService;
 
-    public CreateUserAndAddTask (String[] args, UserService userService) {
+    public CreateUserAndAddTask(String[] args, UserService userService) {
         super(args);
         this.userService = userService;
     }
@@ -27,6 +27,6 @@ public class CreateUserAndAddTask extends BaseCommand {
         String taskTitle = matcher.group("taskTitle");
         String taskDescription = matcher.group("taskDescription");
 
-        userService.createUserAndAddTask (firstName,lastName,userName,taskTitle,taskDescription);
+        userService.createUserAndAddTask(firstName, lastName, userName, taskTitle, taskDescription);
     }
 }

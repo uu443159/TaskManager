@@ -25,6 +25,6 @@ public class CreateUser extends BaseCommand {
         String lastName = matcher.group("lastName");
         String userName = matcher.group("userName");
 
-        userService.createUser(firstName,lastName,userName);
+        userService.createUser(firstName, lastName, userName);
     }
 }
